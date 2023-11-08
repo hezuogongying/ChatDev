@@ -82,7 +82,23 @@ const Softwareinfo = {
     "num_completion_tokens": "-1",
     "num_total_tokens": "-1",
 };
+// BWX_ADD
+// 引入axios库
 
+
+// 创建一个函数，该函数将发送一个POST请求到百度翻译API，并返回翻译后的文本
+function translateText(text) {
+    return axios.post('/en2zh', {text: text})
+        .then(response => {
+            return response.data.translatedText;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+}
+
+
+// BWX_END
 //control chars appear speed
 var timeinterval = 5;
 var charinterval = 1;
@@ -392,6 +408,13 @@ function createPara(d, i) {
     dialogbody.appendChild(singleDialog);
     var paralen;
     if (d.type && d.character) {
+        // BWX_ADD
+        // console.log(d.character);
+        // translateText(d.character)
+        //     .then(translatedText => {
+        //         updateCompanyWorking(translatedText);
+        // });
+        // BWX_END
         updateCompanyWorking(d.character);
         var renderedHtml = md.render(d.character);
         const character = document.createElement("div");

@@ -25,9 +25,9 @@
         </div>
         <div style="position: relative;top:200px;display: flex;">
             <div> <input type="file" id="fileInput" accept=".log" onchange="watchfileInput(this.files)">
-                <button id="filebutton" class="button">File Upload</button>
+                <button id="filebutton" class="button">上传日志</button>
             </div>
-            <div><button id="replay" class="button">Replay</button></div>
+            <div><button id="replay" class="button">回放</button></div>
         </div>
         <div class="markdown-body"><label for="filebutton" id="successupload">
             </label>
@@ -110,6 +110,9 @@
 
         </div>
     </div>
+    <!-- BWX_ADD -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- BWX_END -->
     <script src="replay/js/app.js"></script>
     <!--<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>-->
 </body>
