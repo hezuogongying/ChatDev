@@ -12,28 +12,17 @@
 # limitations under the License.
 # =========== Copyright 2023 @ CAMEL-AI.org. All Rights Reserved. ===========
 import argparse
-
-# 导入argparse模块
 import logging
-
-# 导入logging模块
 import os
-
-# 导入os模块
 import sys
 
-# 导入sys模块
 from camel.typing import ModelType
 
-# 导入ModelType模块
 root = os.path.dirname(__file__)
-# 获取当前文件夹的路径
 sys.path.append(root)
-# 将当前文件夹的路径添加到sys.path中
 
 from chatdev.chat_chain import ChatChain
 
-# 导入ChatChain模块
 
 def get_config(company):
     """
