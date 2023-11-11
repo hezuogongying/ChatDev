@@ -67,7 +67,7 @@ def get_config(company):
 
     return tuple(config_paths)
 
-
+# TODO: 下面部分用fastapi传入参数
 parser = argparse.ArgumentParser(description='argparse')
 parser.add_argument('--config', type=str, default="Default",
                     help="Name of config, which is used to load configuration under CompanyConfig/")

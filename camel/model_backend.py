@@ -14,13 +14,14 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict
 
-import openai
 import tiktoken
 
 from camel.typing import ModelType
 from chatdev.statistics import prompt_cost
 from chatdev.utils import log_and_print_online
 
+from pprint import pprint
+import json
 
 class ModelBackend(ABC):
     r"""Base class for different model backends.
@@ -63,16 +64,28 @@ class OpenAIModel(ModelBackend):
             "gpt-4": 8192,
             "gpt-4-0613": 8192,
             "gpt-4-32k": 32768,
+            "gpt-4-1106-preview": 4096,
         }
         num_max_token = num_max_token_map[self.model_type.value]
         num_max_completion_tokens = num_max_token - num_prompt_tokens
         self.model_config_dict['max_tokens'] = num_max_completion_tokens
-        response = openai.ChatCompletion.create(*args, **kwargs,
+        from openai import OpenAI
+        import os
+        client = OpenAI(
+            organization=os.environ['OPENAI_ORG_ID'],
+            api_key=os.environ['OPENAI_API_KEY']
+        )
+        response = client.chat.completions.create(*args, **kwargs,
                                                 model=self.model_type.value,
                                                 **self.model_config_dict)
+        # response = openai.ChatCompletion.create(*args, **kwargs,
+        #                                         model=self.model_type.value,
+        #                                         **self.model_config_dict)
+        # 将response 转为json
+        response = json.loads(response.model_dump_json())
         cost = prompt_cost(
                 self.model_type.value, 
-                num_prompt_tokens=response["usage"]["prompt_tokens"], 
+                num_prompt_tokens=response["usage"]["prompt_tokens"],
                 num_completion_tokens=response["usage"]["completion_tokens"]
         )
 
