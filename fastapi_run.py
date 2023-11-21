@@ -1,28 +1,29 @@
 from fastapi import FastAPI, Form, UploadFile, File, HTTPException, Request
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, RedirectResponse
 from pydantic import BaseModel, Field
 from typing import List
 import shutil
 from pathlib import Path
 from pprint import pprint
 
-import argparse
 # 导入argparse模块
 import logging
 # 导入sys模块
 
 
 
+from camel.typing import ModelType
+from camel.model_backend import OpenAIModel
 # 导入logging模块
 import os
+import json
  # 导入os模块
 import sys
  # 导入ModelType模块 
-root = os.path.dirname(__file__)
+root_path = os.path.dirname(__file__)
 # 获取当前文件夹的路径
-sys.path.append(root)
-from dotenv import load_dotenv
-load_dotenv() 
+sys.path.append(root_path)
+
 # # 设置环境变量
 
 
@@ -37,8 +38,8 @@ def get_config(company):
     Returns:
         path to three configuration jsons: [config_path, config_phase_path, config_role_path]
     """
-    config_dir = os.path.join(root, "CompanyConfig", company)
-    default_config_dir = os.path.join(root, "CompanyConfig", "Default")
+    config_dir = os.path.join(root_path, "CompanyConfig", company)
+    default_config_dir = os.path.join(root_path, "CompanyConfig", "Default")
 
     config_files = [
         "ChatChainConfig.json",
@@ -56,7 +57,6 @@ def get_config(company):
             config_paths.append(company_config_path)
         else:
             config_paths.append(default_config_path)
-
     return tuple(config_paths)
     
 
@@ -71,30 +71,27 @@ def en_zh(text, to_lang='zh'):
             text_zh = True
             break 
     if  to_lang == 'zh' and text_zh:
-        return text
+        result = text
     elif to_lang == 'en' and not text_zh:
-        return text
+        result = text
     else:
         if  text_zh == 'zh':
             text_to_lang = '英文'
         else:
             text_to_lang = '中文'
-        from openai import OpenAI
-        # print('OPENAI_API_KEY', os.environ['OPENAI_API_KEY'])
-        client = OpenAI(
-            organization=os.environ['OPENAI_ORG_ID'],
-            api_key=os.environ['OPENAI_API_KEY']
-        )
-        res_text = client.chat.completions.create(model="gpt-3.5-turbo-1106",
-                    messages=[
-                        {"role": "system", "content": f"请将内容翻译成{text_to_lang}返回"},
-                        {"role": "user", "content": text}
-                    ])
-        return res_text.choices[0].message.content
+        
+        model_name = ModelType.GPT_3_5_TURBO
+        ask_data = [
+            {"role": "user", "content": text + '\n\n' +  f"请将以上内容翻译成{text_to_lang}返回"}
+        ]
+        model_config_dict = {
+            'temperature': 0.2,
+            'max_tokens': None
+        }
+        Gpt = OpenAIModel(model_type=model_name, model_config_dict=model_config_dict)
+        result = Gpt.run(messages=ask_data)
+    return  result
     
-
-
-
 app = FastAPI()
 
 @app.exception_handler(Exception)
@@ -192,7 +189,7 @@ class ProjectItem(BaseModel):
 async def autorun(project_item: ProjectItem):
     if '13903563281' != project_item.mobile:
         raise HTTPException(status_code=401, detail="Incorrect token")
-    from camel.typing import ModelType
+    
     from chatdev.chat_chain import ChatChain
 
     # Start ChatDev
@@ -248,9 +245,37 @@ async def upload_file(file: UploadFile = File(...)):
         shutil.copyfileobj(file.file, buffer)
     return {"filename": file.filename}
 
+@app.get("/chat/q")
+async def chat_q(q: str):
+    # with open("./CompanyConfig/Art/ChatChainConfig.json", "r", encoding='utf8') as f:
+    #     json_data = json.load(f)
+    model_name = ModelType.GPT_4_TURBO
+    ask_data = [
+        {"role": "system", "content": "You are a helpful assistant designed to output JSON."},
+        {"role": "user", "content":  q}
+    ]
+    model_config_dict = {
+        'temperature': 0.2,
+        "response_format": {"type": "json_object"},
+    }
+    Gpt = OpenAIModel(model_type=model_name, model_config_dict=model_config_dict)
+    response = Gpt.run(messages=ask_data)
+
+
+@app.get("/test/q")
+async def test(q: str):
+    json_data = {"q": q}
+    with open("./CompanyConfig/Art/ChatChainConfig.json", "r", encoding='utf8') as f:
+        json_data = json.load(f)
+    return json_data
+
 # def main():
 #     import uvicorn
 #     uvicorn.run(app, host="0.0.0.0", port=8000, reload=True)
+
+@app.get("/")
+async def home_url():
+    return RedirectResponse(url="/docs#")
 
 import uvicorn
 from multiprocessing import Process

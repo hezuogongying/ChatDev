@@ -15,7 +15,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Set the environment variable for OpenAI API key
 # (you'll need to provide the actual key when running the container)
-ENV OPENAI_API_KEY=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
+ENV OPENAI_API_KEY=your_OpenAI_API_key
 
 # Expose the port for online_log/app.py
 EXPOSE 8000
