@@ -15,12 +15,7 @@ from abc import ABC, abstractmethod
 from typing import Any, Dict
 
 import openai
-import os
-import json
 import tiktoken
-from openai import OpenAI
-from dotenv import load_dotenv
-load_dotenv() 
 
 from camel.typing import ModelType
 from chatdev.statistics import prompt_cost
@@ -52,7 +47,6 @@ class OpenAIModel(ModelBackend):
         super().__init__()
         self.model_type = model_type
         self.model_config_dict = model_config_dict
-        self.client = OpenAI(api_key=os.environ.get("OPENAI_API_KEY"), organization=os.environ.get("OPENAI_ORG_ID"), base_url=os.environ.get("OPENAI_BASE_URL"))
         
     def run(self, *args, **kwargs) -> Dict[str, Any]:
         string = "\n".join([message["content"] for message in kwargs["messages"]])
@@ -69,26 +63,16 @@ class OpenAIModel(ModelBackend):
             "gpt-4": 8192,
             "gpt-4-0613": 8192,
             "gpt-4-32k": 32768,
-            "gpt-4-1106-preview": 4096,
-            "gpt-4-vision-preview": 4096,
         }
-
         num_max_token = num_max_token_map[self.model_type.value]
         num_max_completion_tokens = num_max_token - num_prompt_tokens
         self.model_config_dict['max_tokens'] = num_max_completion_tokens
-        from pprint import pprint
+
         try:
-            # response = openai.ChatCompletion.create(*args, **kwargs, model=self.model_type.value, **self.model_config_dict)
-            
-            pprint(self.model_type)
-            pprint(self.model_config_dict)
-            response = self.client.chat.completions.create(*args, **kwargs, model=self.model_type.value, **self.model_config_dict)
-            # print(response)
-            response = json.loads(response.model_dump_json())
-            # print(80, response)
+            response = openai.ChatCompletion.create(*args, **kwargs, model=self.model_type.value, **self.model_config_dict)
         except AttributeError:
             response = openai.chat.completions.create(*args, **kwargs, model=self.model_type.value, **self.model_config_dict)
-            # print(83, response)
+
         cost = prompt_cost(
                 self.model_type.value, 
                 num_prompt_tokens=response["usage"]["prompt_tokens"], 
@@ -132,10 +116,10 @@ class ModelFactory:
 
     @staticmethod
     def create(model_type: ModelType, model_config_dict: Dict) -> ModelBackend:
-        default_model_type = ModelType.GPT_4_TURBO
+        default_model_type = ModelType.GPT_3_5_TURBO
 
         if model_type in {
-            ModelType.GPT_4_TURBO, ModelType.GPT_4_TURBO_VIS, ModelType.GPT_3_5_TURBO, ModelType.GPT_4, ModelType.GPT_4_32k,
+            ModelType.GPT_3_5_TURBO, ModelType.GPT_4, ModelType.GPT_4_32k,
             None
         }:
             model_class = OpenAIModel
