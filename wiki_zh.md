@@ -87,13 +87,14 @@ docker cp container_id:/path/in/container /path/on/host
 准备中
 定制
 您可以按三种粒度自定义您的公司：
-自定义ChatChain
-自定义阶段
-自定义角色
+--自定义ChatChain
+--自定义阶段Phase
+--自定义角色Role
 下面是 ChatDev 的概述架构，它说明了上述三个类之间的关系：
-拱
 
-所有与 ChatDev 相关的配置内容（例如代理员工的后台提示、每个 Phase 的工作内容、Phase 如何组合成一个 ChatChain），都称为 CompanyConfig（因为 ChatDev 就像一个虚拟软件公司）。这些 CompanyConfig 位于 ChatDev 项目的 Under 下。您可以检查此目录。在此目录中，您将看到不同的 CompanyConfig（例如 Default、Art、Human）。一般来说，每个 CompanyConfig 将包含 3 个配置文件。CompanyConfig/
+
+所有与 ChatDev 相关的配置内容（例如代理员工的后台提示、每个 Phase 的工作内容、Phase 如何组合成一个 ChatChain），都称为 CompanyConfig（因为 ChatDev 就像一个虚拟软件公司）。这些 CompanyConfig 位于 ChatDev 项目的 CompanyConfig/ 下。您可以检查此目录。在此目录中，您将看到不同的 CompanyConfig（例如 Default、Art、Human）。一般来说，每个 CompanyConfig 将包含 3 个配置文件。CompanyConfig/
+
 ChatChainConfig.json，控制 ChatDev 的整体开发过程，包括每一步是哪个 Phase、每个 Phase 需要循环多少次、是否需要 reflect 等。
 PhaseConfig.json，用于控制每个阶段，对应于 ChatDev 项目或位于 ChatDev 项目中。Python文件实现了每个阶段的具体工作逻辑。这里的json文件包含了每个阶段的配置，比如后台提示，哪些员工参与了这个阶段等。chatdev/phase.pychatdev/composed_phase.py
 RoleConfig.json 包含每个员工（代理）的配置。目前，它只包含每个员工的背景提示，这是一堆包含占位符的文本。

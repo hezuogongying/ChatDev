@@ -1,0 +1,277 @@
+{
+ "DemandAnalysis": {
+    "assistant_role_name": "首席产品官",
+    "user_role_name": "首席执行官",
+    "phase_prompt": [
+      "Chatdev之前已经以以下形式制作了产品: ",
+      "图像: 可以在线图,条形图,流程图,云图,甘特图等中呈现信息。",
+      "文档: 可以通过.docx文件提供信息。",
+      "PowerPoint: 可以通过.pptx文件呈现信息。",
+      "excel: 可以通过.xlsx文件提供信息。",
+      "PDF: 可以通过.pdf文件提供信息。",
+      "网站: 可以通过.html文件介绍个人简历,教程,产品或想法。"
+      "应用: 可以通过Python实现可视化的游戏,软件,工具等。"
+      "仪表板: 可以显示一个可视化实时信息的面板。"
+      "思维图: 可以代表思想,并围绕核心概念安排的相关概念。"
+      "作为{Assistant_role},为了满足新用户的需求,应该可以实现该产品,您应该继续与我讨论,以决定我们希望该产品成为哪种产品方式？",
+      "请注意,我们必须只讨论产品模式而不讨论其他任何内容！一旦我们所有人都表达了我们的意见并同意讨论的结果,我们每个人都必须通过仅与一个回复来积极地终止讨论Line以单个字<fofe>开头,然后是我们的最终产品模式,而没有任何其他单词,例如\ \"<info> PowerPoint \"。
+    ]
+  },
+  "languagechoose": {
+    "Assistion_role_name": "首席技术官",
+    "user_role_name": "首席执行官",
+    "phase_prompt": [
+      "根据新用户的任务以及一些创造性的头脑风暴想法: ",
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "想法: \"{indues} \"。"。
+      "我们决定通过通过编程语言实现的可执行软件来完成任务。"
+      "作为{Assistion_role},为了满足新用户的需求并使软件可实现,您应该提出一种具体的编程语言。如果Python可以通过Python完成此任务,请回答Python；否则,请回答另一种编程语言（例如Java,Java,Java,Java,Java,C ++等）。
+      "请注意,我们必须只讨论目标编程语言,而不会讨论其他任何内容！一旦我们所有人都表达了我们的意见并同意讨论的结果,我们每个人都必须积极终止讨论并结束最好的结论。我们已经讨论的编程语言没有任何其他单词或原因,只使用格式返回一行: \"<fofe> *\"where \"*\"代表一种编程语言。
+    ]
+  },
+  "Coding": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "首席技术官",
+    "phase_prompt": [
+      "根据新用户的任务和我们的软件设计,下面列出: ",
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "编程语言: \"{language} \"",
+      "想法: \"{indues} \"",
+      "我们已决定通过可执行软件完成任务,该软件通过{Assistion_role}实现多个文件,为了满足新用户的要求,您应该编写一个或多个文件,并确保架构的每个细节最终,以代码实现。{gui}",
+      "一步一步地思考自己做正确的决定,以确保我们正确地做到这一点。"
+      "您将首先列出必要的核心类,功能,方法的名称,以及对其目的的快速评论。"
+      "然后,您将输出每个文件的内容,包括完整的代码。每个文件必须严格遵循Markdown代码块格式,其中必须更换以下令牌,以便\"FILENAME \"是小写文件名称,包括文件扩展名,编程语言中的 \"LANGUAGE\", \"DOCSTRING \" 是源代码中指定的字符串字符串,用于记录代码的特定段, \"CODE\" 是原始代码: 
+      "FILENAME",
+    "````'LANGUAGE',
+      "'''",
+      "DOCSTRING",
+      "'''",
+      "CODE",
+      "`````',
+      "您将从\"main \"文件开始,然后转到该文件导入的文件,依此类推。
+      "请注意,该代码应完全有效。确保实施所有功能。没有占位符（例如python中的'Pass'）。"
+    ]
+  },
+ "artdesign": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "首席创意官",
+    "phase_prompt": [
+      "我们开发的源代码和相应的测试报告如下: ",",
+      "任务: \"{task} \"。",
+      "编程语言: \"{language} \"",
+      "源代码: ",
+      "\"{codes} \"",
+      "请注意,每个文件都必须严格遵循Markdown代码块格式,其中必须更换以下令牌,以使\"filename \"是小写文件名称,包括文件扩展名,\'language \"in编程语言,\"docString \"是源代码中指定的字符串文字,用于记录代码的特定段,\"代码\"是原始代码: ",
+      "文件名",
+      "````'语言',
+      "'''",
+      "docstring",
+      "'''",
+      "代码",
+      "`````',
+      "作为{Assisth_role},为了满足新用户的需求并为软件配备精美的图形用户界面（GUI）,我们将讨论并设计许多用于GUI装饰的装饰图像。现在,我们继续通过列出一些来讨论GUI美容GUI中有功能独立的元素被认为是由不同图片装饰的。例如,计算器中的十个数字（0-9）在功能上是独立的。
+      "要回答,请使用格式: \"filename.png: description \"where \"filename \"是映像的文件名,\ \"Description \"表示独立元素的详细说明。例如: ",例如: 
+      "'''",
+      "button_1.png: 带有数字\"1 \"的按钮。
+      "button_multiply.png: 带有乘法符号（\"*\"）的按钮。
+      "Background.PNG: 装饰Go游戏的背景颜色",
+      "'''",
+      "现在,尽可能列出所有功能独立的元素。"
+    ]
+  },
+  "Artintegration": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "首席创意官",
+    "phase_prompt": [
+      "我们开发的源代码和相应的测试报告如下: ",",
+      "任务: \"{task} \"。",
+      "编程语言: \"{language} \"",
+      "源代码: ",
+      "\"{codes} \"",
+      "请注意,每个文件都必须严格遵循Markdown代码块格式,其中必须更换以下令牌,以使\"filename \"是小写文件名称,包括文件扩展名,\'language \"in编程语言,\"docString \"是源代码中指定的字符串文字,用于记录代码的特定段,\"代码\"是原始代码: ",
+      "文件名",
+      "```LANGUAGE",
+      "'''",
+      "DOCSTRING",
+      "'''",
+      "CODE",
+      "```",
+      "As the {assistant_role}, to satisfy the new user's demand and equip the software with a beautiful graphical user interface (GUI), you will incorporate our designed images for GUI decoration. Here are some ready-made high-quality pictures and corresponding descriptions:",
+      "{images}",
+      "Note that the designed images have a fixed size of 256x256 pixels and the images are located in the same directory as all the Python files; please dynamically scaling these images according to the size of GUI, and use \"self.*\"to avoid displaying-related problems caused by automatic garbage collection. For example:",
+      "```",
+      "self.image = ImageTk.PhotoImage(Image.open(\"./image.png\").resize((50, 50)))",
+      "```",
+      "Now, use some or all of the pictures into the GUI to make it more beautiful and creative. Output codes strictly following the required format mentioned above."
+    ]
+  },
+  "codecomplete": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "首席技术官",
+    "phase_prompt": [
+      "根据新用户的任务和我们的软件设计,下面列出: ",
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "编程语言: \"{language} \"",
+      "代码: ",
+      "\"{codes} \"",
+      "未完成的文件: ",
+      "\"{unimplemented_file} \"",
+      "在我们的软件中,每个文件必须严格遵循降级代码块格式,其中必须更换以下令牌,以使\"fileName \"是小写文件名称,包括文件扩展名,\ filesing语言,以编程语言为单位,\"docString \"是源代码中指定的字符串字符串,用于记录代码的特定段,\"代码\"是原始代码: 
+      "文件名",
+      "````'语言',
+      "'''",
+      "docstring",
+      "'''",
+      "代码",
+      "`````',
+      "作为{Assisths_role},为了满足我们已开发的软件的完整功能,您必须在{unimplemented_file}文件中实现包含未完成类的所有方法。,然后严格遵循所需格式,输出已实现的代码。"
+    ]
+  },
+  "CodereViewComment": {
+    "Assistion_role_name": "代码审阅者",
+    "user_role_name": "程序员",
+    "phase_prompt": [
+      "根据新用户的任务和我们的软件设计: ",
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "编程语言: \"{language} \"",
+      "想法: \"{indues} \"",
+      "代码: ",
+      "\"{codes} \"",
+      "作为{Assistaim_role},为了使软件直接可运行而无需进一步编码,Chatdev已制定了以下规定: "
+      "1）所有引用的类都应进口；"
+      "2）应实施所有方法；"
+      "3）所有方法都需要具有必要的评论；"
+      "4）没有潜在的错误；",
+      "5）整个项目符合用户提出的任务；"
+      "6）最重要的是,不仅检查代码中的错误,还要检查代码的逻辑。确保用户可以与生成的软件进行交互而不会丢失要求中的任何功能；
+      "现在,您应该一一检查上述条例并详细检查代码,提出一个关于代码优先级最高优先级的评论,并给我有关如何修复的说明。告诉我您的评论,并具有最高优先级和相应的建议。在修订中。如果代码是完美的,并且您对它们没有评论,则仅返回一行,例如\"<info>完成\"。
+    ]
+  },
+  "CodereViewModification": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "代码审阅者",
+    "phase_prompt": [
+      "根据新用户的任务,我们设计的产品模式,语言和想法,我们开发的第一版源代码如下: 
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "编程语言: \"{language} \"",
+      "想法: \"{indues} \"",
+      "代码: ",
+      "\"{codes} \"",
+      "对代码的评论: ",
+      "\"{评论}\"",
+      "在软件中,每个文件必须严格遵循降级代码块格式,其中必须更换以下令牌,以使\"filename \"是小写文件名称,包括文件扩展名,\ filesing语言,以编程语言,\"docString \"是源代码中指定的字符串字符串,用于记录代码的特定段,\"代码\"是原始代码。格式。格式: ",,
+      "文件名",
+      "````'语言',
+      "'''",
+      "docstring",
+      "'''",
+      "代码",
+      "`````',
+      "作为{Assisth_role},为了满足新用户的需求并使软件创意,执行和鲁棒,您应该根据评论修改相应的代码。然后,使用根据注释固定的所有错误输出完整和完整的代码。严格按照所需格式返回所有代码。"
+    ]
+  },
+  "TestErrorSummary": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "软件测试工程师",
+    "phase_prompt": [
+      "我们开发的源代码和相应的测试报告如下: ",",
+      "编程语言: \"{language} \"",
+      "源代码: ",
+      "\"{codes} \"",
+      "源代码的测试报告: ",
+      "\"{test_reports} \"",
+      "根据我的测试报告,请找到并总结引起问题的错误。"
+    ]
+  },
+  "TestModification": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "软件测试工程师",
+    "phase_prompt": [
+      "我们开发的源代码和相应的测试报告如下: ",",
+      "编程语言: \"{language} \"",
+      "源代码: ",
+      "\"{codes} \"",
+      "源代码的测试报告: ",
+      "\"{test_reports} \"",
+      "测试报告的错误摘要: ",
+      "\"{error_summary} \"",
+      "请注意,每个文件都必须严格遵循Markdown代码块格式,其中必须更换以下令牌,以使\"filename \"是小写文件名称,包括文件扩展名,\'language \"in编程语言,\"docString \"是源代码中指定的字符串文字,用于记录代码的特定段,\"代码\"是原始代码: ",
+      "文件名",
+      "````'语言',
+      "'''",
+      "docstring",
+      "'''",
+      "代码",
+      "`````',
+      "作为{Assisth_role},为了满足新用户的需求并使软件顺利执行,您应该根据错误摘要修改代码。现在,使用上面的典范,并根据错误摘要修改问题代码。。输出您根据报告的测试和相应说明固定的代码（严格遵循上述定义的格式,包括文件名,语言,DocString和代码；不完整\"TODO \"代码是严格禁止的）。如果未报告错误,则请仅返回一行,例如\"<info>完成\"。
+    ]
+  },
+  "emoventerdoc": {
+    "Assistion_role_name": "程序员",
+    "user_role_name": "首席技术官",
+    "phase_prompt": [
+      "列出了新用户的任务和我们开发的代码: ",
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "编程语言: \"{language} \"",
+      "想法: \"{indues} \"",
+      "代码: ",
+      "\"{codes} \"",
+      "作为{Assisth_role},您应该编写一个要求。标准化格式。例如: ",
+      "需求.txt",
+      "`````',
+      "numpy == 1.19.2",
+      "熊猫> = 1.1.4",
+      "`````',
+      "根据上面列出的代码和文件格式,编写一个要求。txt文件以指定项目正确运行所需的依赖关系或软件包。"
+    ]
+  },
+  "Manual":  {
+    "Assistion_role_name": "首席产品官",
+    "user_role_name": "首席执行官",
+    "phase_prompt": [
+      "新用户的任务,我们开发的代码和所需的依赖项已列出: ",
+      "任务: \"{task} \"。",
+      "模态: \"{modation} \"。",
+      "编程语言: \"{language} \"",
+      "想法: \"{indues} \"",
+      "代码: ",
+      "\"{codes} \"",
+      "要求: ",
+      "\"{要求}\"",
+      "作为{Assisth_role},通过使用Markdown,您应该编写一个手册。md文件,该文件是一本详细的用户手册,用于使用软件,包括介绍软件的主要功能,如何安装环境依赖关系以及如何使用/播放它。 例如: ",
+      "手动.md",
+      "`````',
+      "＃兰班",
+      "通过合成性通过LLM构建应用程序",
+      "寻找JS/TS版本？查看Langchain.js。",
+      "**生产支持: **当您将兰链转移到生产中时,我们很乐意提供更多的全面支持。"
+      "请填写此表格,我们将设置一个专用的Support Slack频道。"
+      "##快速安装",
+      "``pip install langchain',
+      "或者",
+      "'conda安装Langchain -C Conda -Forge",
+      "##🤔这是什么？",
+      "大型语言模型（LLMS）正在成为一种变革性的技术,使开发人员能够构建以前无法的应用程序。但是,在孤立的情况下使用这些LLM通常不足以创建一个真正强大的应用程序 - 真正的力量可以在您可以组合时出现。他们具有其他计算或知识来源。",
+      "该图书馆旨在协助开发这些类型的应用程序。这些应用程序的常见示例包括: ","
+      "**❓对特定文件回答的问题**",
+      " - 文档",
+      " - 端到端示例: 对概念数据库的问题回答",
+      "**🤖代理**",
+      " - 文档",
+      " - 端到端示例: gpt+wolframalpha",
+      "##📖文档",
+      "请参阅[此处]（https://python.langchain.com）以获取完整的文档: 
+      " - 入门（安装,设置环境,简单示例）",
+      " - 如何示例（演示,集成,辅助功能）",
+      " - 参考（完整的API文档）",
+      " - 资源（核心概念的高级解释）",
+      "``''
+    ]
+  }
+}

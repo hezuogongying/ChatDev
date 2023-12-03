@@ -1,0 +1,144 @@
+{
+  "chain": [
+    {
+      "phase": "需求分析",
+      "phaseType": "Simplephase",
+      "max_turn_step": -1,
+      "need_reflect": "true"
+    },
+    {
+      "phase": "编程语言选择",
+      "phaseType": "Simplephase",
+      "max_turn_step": -1,
+      "need_reflect": "false"
+    },
+    {
+      "phase": "编码",
+      "phaseType": "Simplephase",
+      "max_turn_step": 1,
+      "need_reflect": "false"
+    },
+    {
+      "phase": "艺术",
+      "phaseType": "Composedphase",
+      "Cyclenum": 1,
+      "Composition": [
+        {
+          "phase": "UI设计",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        },
+        {
+          "phase": "艺术集成",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        }
+      ]
+    },
+    {
+      "phase": "代码综合集成",
+      "phaseType": "Composed phase",
+      "Cyclenum": 10,
+      "Composition": [
+        {
+          "phase": "代码完成",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        }
+      ]
+    },
+    {
+      "phase": "代码评审",
+      "phaseType": "Composedphase",
+      "Cyclenum": 3,
+      "Composition": [
+        {
+          "phase": "代码评审注释",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        },
+        {
+          "phase": "代码评审修改",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        }
+      ]
+    },
+    {
+      "phase": "测试",
+      "phaseType": "Composedphase",
+      "Cyclenum": 3,
+      "Composition": [
+        {
+          "phase": "测试错误汇总",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        },
+        {
+          "phase": "测试修改",
+          "phaseType": "Simplephase",
+          "max_turn_step": 1,
+          "need_reflect": "false"
+        }
+      ]
+    },
+    {
+      "phase": "环境参数文档",
+      "phaseType": "Simplephase",
+      "max_turn_step": 1,
+      "need_reflect": "true"
+    },
+    {
+      "phase": "手册",
+      "phaseType": "Simplephase",
+      "max_turn_step": 1,
+      "need_reflect": "false"
+    }
+  ],
+  "recruitments": [
+    "首席执行官",
+    "顾问",
+    "首席人力资源官",
+    "首席产品官",
+    "首席技术官",
+    "程序员",
+    "代码审阅者",
+    "软件测试工程师",
+    "首席创意官"
+  ],
+  "clear_structure": "true",
+  "brainstorming": "false",
+  "gui_design": "true",
+  "git_management": "false",
+  "self_improve": "false",
+  "crememental_develop": "false"
+}
+/*
+一个项目或软件开发流程的配置JSON（JavaScript Object Notation）数据。它定义了一个包含多个阶段的流程，每个阶段可能包含多个子阶段。此外，它还列出了一些招聘职位和几个项目的设置。下面是对这个JSON数据中各个部分的解释：
+流程阶段设置：
+  需求分析：流程的第一个阶段，用于理解和收集项目需求。
+  编程语言选择：确定项目将使用哪种编程语言。
+  编码：编写代码的阶段。
+  艺术：涉及UI设计和艺术集成的复合阶段。
+  代码综合集成：代码集成和测试的复合阶段，这个阶段会重复多次（Cyclenum为10）。
+  代码评审：代码审查的复合阶段，包括评审注释和修改，这个阶段会重复3次。
+  测试：软件测试的复合阶段，包括错误汇总和测试修改，这个阶段会重复3次。
+  环境参数文档：创建环境参数文档的阶段。
+  手册：创建用户手册的阶段。
+招聘职位：
+  列出了从首席执行官到程序员等不同的职位，这些职位可能是在项目开发过程中需要的。
+项目设置：
+  clear_structure：如果为true，表示需要清晰的项目结构。
+  brainstorming：如果为false，表示不需要头脑风暴会议。
+  gui_design：如果为true，表示需要图形用户界面设计。
+  git_management：如果为false，表示不需要使用Git进行版本管理。
+  self_improve：如果为false，表示项目不需要自我改进功能。
+  crememental_develop：如果为false，表示项目不是基于逐步发展的模式。
+这个JSON数据可能是用于定义一个软件开发流程的自动化工具或系统，它将指导项目从开始到结束的每一步。这些设置将帮助团队理解项目需求、分配任务、管理代码、测试软件，并最终完成项目。
+*/

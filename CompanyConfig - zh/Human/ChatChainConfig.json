@@ -1,0 +1,115 @@
+{
+  "链":  [
+    {
+      "阶段": "需求分析",
+      "phaseType": "简称",
+      "max_turn_step": -1,
+      "需要_reflect": "true"
+    },
+    {
+      "阶段": "languagechoose",
+      "phaseType": "简称",
+      "max_turn_step": -1,
+      "需要_reflect": "true"
+    },
+    {
+      "阶段": "编码",
+      "phaseType": "简称",
+      "max_turn_step": 1,
+      "需要_reflect": "false"
+    },
+    {
+      "阶段": "codecompleteall",
+      "phaseType": "组成的相关",
+      "Cyclenum": 10,
+      "作品":  [
+        {
+          "阶段": "codecomplete",
+          "phaseType": "简称",
+          "max_turn_step": 1,
+          "需要_reflect": "false"
+        }
+      ]
+    },
+    {
+      "阶段": "codereview",
+      "phaseType": "组成的相关",
+      "Cyclenum": 3,
+      "作品":  [
+        {
+          "阶段": "codereviewcomment",
+          "phaseType": "简称",
+          "max_turn_step": 1,
+          "需要_reflect": "false"
+        },
+        {
+          "阶段": "codereviewmodification",
+          "phaseType": "简称",
+          "max_turn_step": 1,
+          "需要_reflect": "false"
+        }
+      ]
+    },
+    {
+      "阶段": "人类互动",
+      "phaseType": "组成的相关",
+      "Cyclenum": 5,
+      "作品":  [
+        {
+          "阶段": "codereviewhuman",
+          "phaseType": "简称",
+          "max_turn_step": 1,
+          "需要_reflect": "false"
+        }
+      ]
+    },
+    {
+      "阶段": "测试",
+      "phaseType": "组成的相关",
+      "Cyclenum": 3,
+      "作品":  [
+        {
+          "阶段": "TestErrorSummary",
+          "phaseType": "简称",
+          "max_turn_step": 1,
+          "需要_reflect": "false"
+        },
+        {
+          "阶段": "testmodification",
+          "phaseType": "简称",
+          "max_turn_step": 1,
+          "需要_reflect": "false"
+        }
+      ]
+    },
+    {
+      "阶段": "emoventerdoc",
+      "phaseType": "简称",
+      "max_turn_step": 1,
+      "需要_reflect": "true"
+    },
+    {
+      "阶段": "手动",
+      "phaseType": "简称",
+      "max_turn_step": 1,
+      "需要_reflect": "false"
+    }
+  ],
+  "招聘": [
+    "首席执行官",
+    "顾问",
+    "首席人力资源官",
+    "首席产品官",
+    "首席技术官",
+    "程序员",
+    "代码审阅者",
+    "软件测试工程师",
+    "首席创意官"
+  ],
+  "clear_structure": "true",
+  "头脑风暴": "false",
+  "gui_design": "true",
+  "git_management": "false",
+  "self_improve": "false",
+  "crememental_develop": "false"
+}
