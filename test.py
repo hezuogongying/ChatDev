@@ -3,7 +3,7 @@ from camel.model_backend import OpenAIModel
 import os
 import json
 
-# 简洁版本测试2
+# 简洁版本测试 3
 def main():
     question = 'What is the capital of France'
     model_name = ModelType.GPT_3_5_TURBO
